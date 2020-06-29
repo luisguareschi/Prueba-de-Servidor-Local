@@ -11,7 +11,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'  # Location of th
 app.config['SQLALCHEMY_TRACK_NOTIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-
 # Database Model 1
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -29,6 +28,7 @@ class User(db.Model):
         return str(self.id) + '|' + str(self.name) + '|' + str(self.age) + '|' + str(self.sex) + '|(created at)' + str(
             self.date_created)
 
+# Database Model 2
 class Inventory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
@@ -40,6 +40,7 @@ class Inventory(db.Model):
 
     def __repr__(self):
         return str(self.id) + '|' + str(self.name) + '|' + '|amount: ' + str(self.amount)
+
 # Run the database
 db.create_all()
 
@@ -47,7 +48,6 @@ db.create_all()
 @app.route('/')
 def home():
     return 'This is the homepage'
-
 
 @app.route('/add_user')
 def add_user():
@@ -61,7 +61,6 @@ def add_user():
         return 'User ' + str(name) + ' has been created!'
     else:
         'No user added'
-
 
 @app.route('/all_users')
 def show_users():
