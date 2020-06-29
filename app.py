@@ -72,6 +72,12 @@ def show_inventory():
     inv = Inventory.query.all()
     return str(inv)
 
+# Function to print all entries in the model
+def show_all(model):
+    all_info = model.query.all()
+    for i in all_info:
+        print(i)
+
 # Run the server
 app.run()
 
