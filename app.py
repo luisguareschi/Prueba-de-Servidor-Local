@@ -29,6 +29,17 @@ class User(db.Model):
         return str(self.id) + '|' + str(self.name) + '|' + str(self.age) + '|' + str(self.sex) + '|(created at)' + str(
             self.date_created)
 
+class Inventory(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50))
+    amount = db.Column(db.Integer)
+
+    def __init__(self, name, amount):
+        self.name = name
+        self.amount = amount
+
+    def __repr__(self):
+        return str(self.id) + '|' + str(self.name) + '|' + '|amount: ' + str(self.amount)
 # Run the database
 db.create_all()
 
@@ -57,6 +68,12 @@ def show_users():
     users = User.query.all()
     return str(users)
 
+@app.route('/inventory')
+def show_inventory():
+    inv = Inventory.query.all()
+    return str(inv)
+
 # Run the server
 app.run()
+
 
