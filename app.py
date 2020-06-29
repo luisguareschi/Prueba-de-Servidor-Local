@@ -65,12 +65,12 @@ def add_user():
 @app.route('/all_users')
 def show_users():
     users = User.query.all()
-    return str(users)
+    return jsonify(str(users))
 
 @app.route('/inventory')
 def show_inventory():
     inv = Inventory.query.all()
-    return str(inv)
+    return jsonify(str(inv))
 
 # Function to print all entries in the model, ONLY WORKS on the TERMINAL
 def show_all(model):
