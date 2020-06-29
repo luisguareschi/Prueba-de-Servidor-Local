@@ -72,7 +72,7 @@ def show_inventory():
     inv = Inventory.query.all()
     return str(inv)
 
-# Function to print all entries in the model
+# Function to print all entries in the model, ONLY WORKS on the TERMINAL
 def show_all(model):
     all_info = model.query.all()
     for i in all_info:
