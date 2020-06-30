@@ -38,11 +38,18 @@ def add_user_post():
     name = request.args.get('name')
     age = request.args.get('age')
     sex = request.args.get('sex')
-    if request.method == 'POST' and name is not None:
-        new_user = User(name, age, sex)
-        db.session.add(new_user)
-        db.session.commit()
-        return 'User ' + str(name) + ' has been created!'
+    if (name or age or sex) is None:
+        name = request.form.get('name')
+        age = request.form.get('age')
+        sex = request.form.get('sex')
+    if request.method == 'POST':
+        if name is not None:
+            new_user = User(name, age, sex)
+            db.session.add(new_user)
+            db.session.commit()
+            return 'User ' + str(name) + ' has been created!'
+        else:
+            return 'No name provided'
     else:
         return 'Request method not valid (Must be POST)'
 
