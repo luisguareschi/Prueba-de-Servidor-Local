@@ -32,3 +32,17 @@ def show_users():
 def show_inventory():
     inv = Inventory.query.all()
     return jsonify(str(inv))
+
+@app.route('/add_user/post', methods=['POST', 'GET'])
+def add_user_post():
+    name = request.args.get('name')
+    age = request.args.get('age')
+    sex = request.args.get('sex')
+    if request.method == 'POST' and name is not None:
+        new_user = User(name, age, sex)
+        db.session.add(new_user)
+        db.session.commit()
+        return 'User ' + str(name) + ' has been created!'
+    else:
+        return 'Request method not valid (Must be POST)'
+
