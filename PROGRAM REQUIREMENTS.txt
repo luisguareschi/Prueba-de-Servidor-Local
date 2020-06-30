@@ -1,3 +1,0 @@
-1-Python v3.7
-2-Flask v1.1.2
-3-Flask SQLAlchemy v2.4.3
