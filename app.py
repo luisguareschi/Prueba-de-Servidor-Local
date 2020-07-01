@@ -2,7 +2,7 @@ from flask import Flask
 from flask import jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from setup_modules import User, Inventory, db, app
+from setup_modules import User, Inventory, Item_status, db, app, Student, Subject, StudentSubject, Teacher
 from routes import home
 # Run the database
 db.create_all()
@@ -30,7 +30,7 @@ def delete(item_id, directory):
     data = directory.query.get(item_id)
     db.session.delete(data)
     db.session.commit()
-    print(data.name, 'deleted successfully')
+    print('Object with ID:', data.id, 'deleted successfully')
 
 ### Functions to validate the format of the data
 def validate_name(model):
@@ -85,5 +85,6 @@ def validate_all_data():
 validate_all_data()
 # Run the server
 app.run()
+
 
 
